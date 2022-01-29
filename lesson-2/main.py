@@ -30,13 +30,13 @@ for item in base_list:
     item_result['link'] = list(a_tag.children)[0].get('href')
     let_list = ['от', 'до']
     try:
-        wage = str(item.find('span', attrs={'class': 'bloko-header-section-3',
+        str_wage = str(item.find('span', attrs={'class': 'bloko-header-section-3',
                                                        'data-qa': 'vacancy-serp__vacancy-compensation'}).getText())
-        wage = wage.split()
-        wage_list[2] = wage[-1]
-        wage = wage[:-1]
-        if wage[0] in let_list:
-            int_wage = int(wage[1] + wage[2])
+        params_wage = str_wage.split()
+        wage_list[2] = params_wage[-1]
+        params_wage = params_wage[:-1]
+        if params_wage[0] in let_list:
+            int_wage = int(params_wage[1] + params_wage[2])
             if wage[0] == let_list[0]:
                 wage_list[0] = int_wage
             else:
@@ -46,10 +46,10 @@ for item in base_list:
             wage_list[0] = int_wage_min
             int_wage_max = int(wage[3] + wage[4])
             wage_list[1] = int_wage_max
-
+        wage = wage_list
     except:
-        wage_list = None
-    item_result['wage'] = wage_list
+        wage = wage_list
+    item_result['wage'] = wage
     item_result['site'] = 'hh.ru'
     result.append(item_result)
 
